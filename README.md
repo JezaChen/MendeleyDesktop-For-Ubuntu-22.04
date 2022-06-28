@@ -42,7 +42,7 @@ sudo dpkg -i mendeleydesktop_1.19.8_for_ubuntu_22.04.deb
 
 ## Repackaged deb
 
-You can also install the deb package that has been repackaged directly, if you trust me 😇:
+You can also directly install the deb package that has been repackaged, if you trust me 😇:
 
 https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/releases
 
