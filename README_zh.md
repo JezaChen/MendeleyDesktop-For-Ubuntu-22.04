@@ -37,6 +37,12 @@ curl -s https://raw.githubusercontent.com/JezaChen/MendeleyDesktop-For-Ubuntu-22
 sudo dpkg -i mendeleydesktop_1.19.8_for_ubuntu_22.04.deb
 ```
 
+## 已经重新打包好的deb安装包
+
+您也可以直接安装已经打包好的deb包，如果信任我的话 😇:
+
+https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/releases
+
 ## 相关链接
 - [Can't install Mendeley desktop version 1.19.8 on Ubuntu 22.04, from Ubuntu Forum](https://ubuntuforums.org/showthread.php?t=2474380)
 
