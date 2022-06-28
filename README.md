@@ -1,4 +1,7 @@
 # MendeleyDesktop-For-Ubuntu-22.04
+
+[>中文文档<](https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/blob/main/README_zh.md)
+
 Script to repackage Mendeley Desktop for compatibility with Ubuntu 22.04
 
 ## Why repackage?
