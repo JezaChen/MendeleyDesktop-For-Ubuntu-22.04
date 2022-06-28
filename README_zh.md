@@ -1,7 +1,7 @@
 # MendeleyDesktop-For-Ubuntu-22.04
 重新打包 Mendeley Desktop 的脚本，使其兼容于Ubuntu 22.04
 
-## 为什么需要重新包装？
+## 为什么需要重新打包？
 
 如果使用`dpkg`直接安装Mendeley的官方安装包，
 很大概率上会出现以下错误：
@@ -13,10 +13,10 @@ dpkg：依赖问题使得mendeleydesktop的配置工作不能继续：
 ```
 
 这是因为从 Debian 11（bullseye）和 Ubuntu 20.04 LTS（focal）开始
-发布时，所有 python 包都使用显式的 `python3` 或 `python2` 解释器，并且根本不使用未版本化的 `/usr/bin/python`。
+发布时，所有的 python 包都使用显式的 `python3` 或 `python2` 解释器，并不使用未指定版本的 `/usr/bin/python`。
 （另见：https://ubuntuforums.org/showthread.php?t=2474380）
 
-因此，这里我们将mendeleydesktop的依赖从python改为python3，将对应的python脚本转换为python3格式，重新打包。
+因此，这里我们将mendeleydesktop的依赖从python改为python3，将对应的python脚本转换为python3格式，并重新打包。
 
 ## 用法
 确保您已安装 `2to3` 工具，如果没有，请使用 `apt` 安装它：
