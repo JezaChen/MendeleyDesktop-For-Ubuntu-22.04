@@ -31,7 +31,7 @@ sudo apt install 2to3
 Then download and execute the script:
 
 ```shell
-curl https://raw.githubusercontent.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/main/repack.sh | bash -s
+curl -s https://raw.githubusercontent.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/main/repack.sh | bash -s
 ```
 
 After waiting for a few minutes of repackaging, use `dpkg` to install the generated installation package:
