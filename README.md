@@ -15,8 +15,7 @@ dpkg: dependency problems prevent configuration of mendeleydesktop:
   Package python is not installed.
 ```
 
-This is because starting with Debian 11 (bullseye) and Ubuntu 20.04 LTS (focal)
-When published, all python packages use an explicit `python3` or `python2` interpreter, and do not use the unversioned `/usr/bin/python` at all.
+This is because starting with Debian 11 (bullseye) and Ubuntu 20.04 LTS (focal) releases, all python packages use an explicit `python3` or `python2` interpreter, and do not use the unversioned `/usr/bin/python` at all.
 (See also: https://ubuntuforums.org/showthread.php?t=2474380)
 
 Therefore, here we change the dependency of mendeleydesktop from python to python3, convert the corresponding python script to python3 format, and repackage it.
@@ -50,3 +49,5 @@ https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/releases
 - [Can't install Mendeley desktop version 1.19.8 on Ubuntu 22.04, from Ubuntu Forum](https://ubuntuforums.org/showthread.php?t=2474380)
 
 - [How to install Mendeley on Ubuntu 22.04, from AskUbuntu](https://askubuntu.com/questions/1405042/how-to-install-mendeley-on-ubuntu-22-04)
+
+- [Ubuntu: Customizing and repacking a deb file](https://fabianlee.org/2018/09/28/ubuntu-customizing-and-repacking-a-deb-file/)
