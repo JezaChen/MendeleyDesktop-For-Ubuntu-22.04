@@ -8,15 +8,18 @@ if [ "" = "$PKG_OK" ]; then
   exit 1
 fi
 
+trap 'rm -rf "$TEMP_DIR_PATH"' EXIT
+
 # Declare some variables
-TEMP_DIR_PATH="./mendeley_repack_temp"
+CURR_PWD=$(pwd)
+TEMP_DIR_PATH=$(mktemp -d) || exit 1
 DOWNLOAD_PATH="https://desktop-download.mendeley.com/download/apt/pool/main/m/mendeleydesktop/mendeleydesktop_1.19.8-stable_amd64.deb"
 DOWNLOADED_FILE_NAME="mendeley_origin.deb"
 OUTPUT_DEB_NAME="mendeleydesktop_1.19.8_for_ubuntu_22.04.deb"
 
 
-# Create a temp directory
-mkdir ${TEMP_DIR_PATH} && cd ${TEMP_DIR_PATH}
+# Enter the temp directory
+cd ${TEMP_DIR_PATH}
 
 # Download deb
 wget ${DOWNLOAD_PATH} -O ${DOWNLOADED_FILE_NAME}
@@ -40,10 +43,9 @@ tar cJf data.tar.xz opt usr
 ar rcs ${OUTPUT_DEB_NAME} debian-binary control.tar.gz data.tar.xz
 
 # Move the changed deb file
-mv ${OUTPUT_DEB_NAME} ../
+mv ${OUTPUT_DEB_NAME} ${CURR_PWD}
 
 # Delete 
-cd ..
 rm -rf ${TEMP_DIR_PATH}
 
 # Echo
