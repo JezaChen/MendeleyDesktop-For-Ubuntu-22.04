@@ -1,37 +1,53 @@
-## Welcome to GitHub Pages
+# MendeleyDesktop-For-Ubuntu-22.04
 
-You can use the [editor on GitHub](https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+[>中文文档<](https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/blob/main/README_zh.md)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Script to repackage Mendeley Desktop for compatibility with Ubuntu 22.04
 
-### Markdown
+## Why repackage?
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+If you use `dpkg` to install Mendeley's official installation package directly,
+there is a high probability that the following errors will occur:
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+dpkg: dependency problems prevent configuration of mendeleydesktop:
+ mendeleydesktop depends on python; however:
+  Package python is not installed.
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+This is because starting with Debian 11 (bullseye) and Ubuntu 20.04 LTS (focal) releases, all python packages use an explicit `python3` or `python2` interpreter, and do not use the unversioned `/usr/bin/python` at all.
+(See also: https://ubuntuforums.org/showthread.php?t=2474380)
 
-### Jekyll Themes
+Therefore, here we change the dependency of mendeleydesktop from python to python3, convert the corresponding python script to python3 format, and repackage it.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+## Usage
+Make sure you have the `2to3` tool installed, if not, install it with `apt`:
 
-### Support or Contact
+```shell
+sudo apt install 2to3
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Then download and execute the script:
+
+```shell
+curl -s https://raw.githubusercontent.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/main/repack.sh | bash -s
+```
+
+After waiting for a few minutes of repackaging, use `dpkg` to install the generated installation package:
+
+```shell
+sudo dpkg -i mendeleydesktop_1.19.8_for_ubuntu_22.04.deb
+```
+
+## Repackaged deb
+
+You can also directly install the deb package that has been repackaged, if you trust me 😇:
+
+https://github.com/JezaChen/MendeleyDesktop-For-Ubuntu-22.04/releases
+
+## Related Links
+- [Can't install Mendeley desktop version 1.19.8 on Ubuntu 22.04, from Ubuntu Forum](https://ubuntuforums.org/showthread.php?t=2474380)
+
+- [How to install Mendeley on Ubuntu 22.04, from AskUbuntu](https://askubuntu.com/questions/1405042/how-to-install-mendeley-on-ubuntu-22-04)
+
+- [Ubuntu: Customizing and repacking a deb file](https://fabianlee.org/2018/09/28/ubuntu-customizing-and-repacking-a-deb-file/)
